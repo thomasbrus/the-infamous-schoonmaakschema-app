@@ -1,0 +1,14 @@
+{
+  "name": "the-infamous-schoonmaakschema-app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.x",
+    "coffee-script": "~> 1.3.3",
+    "stylus": "~> 0.27.1",
+    "cron": "~> 1.0.0"
+  },
+  "scripts": {
+    "start": "coffee app.coffee"
+  }
+}
