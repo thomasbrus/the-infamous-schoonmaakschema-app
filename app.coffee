@@ -1,7 +1,7 @@
 express = require 'express'
 CronJob = require('cron').CronJob
 mail = require('mail').Mail
-  host: 'thomasbrus92@gmail.com',
+  host: 'smtp.gmail.com',
   username: process.env.GMAIL_USERNAME,
   password: process.env.GMAIL_PASSWORD
 
