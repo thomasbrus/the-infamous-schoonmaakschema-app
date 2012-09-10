@@ -1,19 +1,11 @@
 express = require 'express'
 CronJob = require('cron').CronJob
-mail = require('mail').Mail
-  host: 'smtp.gmail.com',
-  username: process.env.GMAIL_USERNAME,
-  password: process.env.GMAIL_PASSWORD
-
+email = require 'emailjs'
 app = module.exports = express.createServer()
 
 # Configuration
 app.configure ->
-  app.use express.bodyParser()
   app.use express.methodOverride()
-  app.use app.router
-  app.use express.static(__dirname + '/public')
-  app.set 'views', __dirname + '/views'
 
 app.configure 'development', ->
   app.use express.errorHandler dumpExceptions: true, showStack: true
@@ -29,26 +21,32 @@ RESIDENTS = [
   { name: 'Thomas', email: process.env.EMAIL_THOMAS }
 ]
 
+# Mailer
+mailServer = email.server.connect
+  user:     process.env.GMAIL_USERNAME, 
+  password: process.env.GMAIL_PASSWORD, 
+  host:     "smtp.gmail.com", 
+  ssl:      true
+
 # Cronjobs
 (new CronJob '00 00 20 * * 5', ->
   week_offset = Math.round((new Date()).getTime() / (60 * 60 * 24 * 7)) % 3
+  
   for resident, i in RESIDENTS
     task = TASKS[(week_offset + i) % 3]
-    mail.message(
-      from: 'thomasbrus92@gmail.com',
-      to: [resident.email],
-      subject: 'Herinnering'
-    )
-    .body("
-      #{resident.name},
+  
+    mailServer.send
+      from:     "Thomas Brus <thomasbrus92@gmail.com>", 
+      to:       "#{resident.name} <#{resident.email}>",
+      subject:  "Herinnering",
+      text:     """
+        #{resident.name},
 
-      Klusje van deze week is: #{task}.
+        Klusje van deze week is: #{task}.
 
-    ")
-    .send((err) ->
-      throw err if err
-      console.log "Reminder sent! (#{resident.name} -> #{task})"
-    )
+      """,
+      (err, message) -> console.log(err || message)
+
 ).start()
 
 app.listen (process.env.PORT or 3000)
