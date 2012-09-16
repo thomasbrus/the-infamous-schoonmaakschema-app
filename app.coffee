@@ -10,12 +10,13 @@ task_division = new TaskDivider
     { name: 'Thomas', email: process.env.EMAIL_THOMAS }
   ]
 
+mailer = new Mailer 'Thomas Brus <thomasbrus92@gmail.com>'
+
 (new CronJob '00 00 20 * * 5', ->
   console.log 'Running cronjob...'
   for division in task_division.run()
     [task, resident] = division
     mailer.send
-      "Thomas Brus <thomasbrus92@gmail.com>",
       "#{resident.name} <#{resident.email}>",
       """
         #{resident.name},
