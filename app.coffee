@@ -31,7 +31,7 @@ remindResidents = ->
   console.log 'Still up...'
 , null, true, 'Europe/Amsterdam').start()  
 
-(new CronJob '00 00 20 * * 5', ->
+(new CronJob '00 00 20 * * 4', ->
   console.log 'Running cronjob...'
   remindResidents()
 , null, true, 'Europe/Amsterdam').start()
