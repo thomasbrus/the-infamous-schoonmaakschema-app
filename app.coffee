@@ -27,4 +27,4 @@ mailer = new Mailer 'Thomas Brus <thomasbrus92@gmail.com>'
 
       """, (err, message) -> console.log(err || message)
     )
-, null, true, 'Europe/Amsterdam')).start()
+, null, true, 'Europe/Amsterdam').start()
