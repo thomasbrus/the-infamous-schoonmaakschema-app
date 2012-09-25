@@ -14,7 +14,7 @@ task_division = new TaskDivider(
 mailer = new Mailer 'Thomas Brus <thomasbrus92@gmail.com>'
 
 (new CronJob '00 * * * * *', ->
-  console.log 'Still up'
+  console.log 'Still up...'
 , null, true, 'Europe/Amsterdam').start()  
 
 (new CronJob '00 00 20 * * 5', ->
