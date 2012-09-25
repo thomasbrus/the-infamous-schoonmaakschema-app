@@ -28,3 +28,5 @@ mailer = new Mailer 'Thomas Brus <thomasbrus92@gmail.com>'
       """, (err, message) -> console.log(err || message)
     )
 , null, true, 'Europe/Amsterdam').start()
+
+console.log 'App started!'
