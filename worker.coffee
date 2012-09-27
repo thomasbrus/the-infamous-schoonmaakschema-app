@@ -29,6 +29,6 @@ remindResidents = ->
   remindResidents()
 , null, true, 'Europe/Amsterdam').start()
 
-console.log 'App started!'
+console.log 'Worker started'
 
 module.exports = remindResidents
