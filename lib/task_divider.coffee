@@ -1,13 +1,19 @@
 class TaskDivider
 
-  constructor: (@tasks, @residents) ->
+  TASKS = ['Keuken', 'Toilet', 'Woonkamer']
+  RESIDENTS = [
+    { name: 'Thomas', email: process.env.EMAIL_THOMAS },
+    { name: 'Bernard', email: process.env.EMAIL_BERNARD },
+    { name: 'Pieter', email: process.env.EMAIL_PIETER }
+  ]
 
-  run: ->
+  constructor: (@tasks = TASKS, @residents = RESIDENTS) ->
+
+  run: (now = new Date()) ->
     for resident, i in @residents
-      [@tasks[(@week_offset() + i) % 3], resident]
+      [@tasks[(@.weeks_passed(now) + i) % 3], resident]
 
-  week_offset: ->
-    WEEK_IN_SECONDS = 60 * 60 * 24 * 7
-    Math.round((new Date()).getTime() / WEEK_IN_SECONDS) % 3
+  weeks_passed: (now) ->
+    Math.floor(now.getTime() / (60 * 60 * 24 * 7 * 1000))
 
 module.exports = TaskDivider

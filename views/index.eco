@@ -1,0 +1,21 @@
+<h1>Schoonmaakschema</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <% for resident in @residents: %>
+        <th><%= resident.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% for [date, first, second, third], i in @task_divisions: %>
+      <tr class="<%= 'muted' if i < @task_divisions.length - 1 %>">
+        <td><%= date %></td>
+        <td><%= first %></td>
+        <td><%= second %></td>
+        <td><%= third %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

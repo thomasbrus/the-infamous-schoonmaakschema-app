@@ -2,14 +2,7 @@ Mailer = require './lib/mailer'
 TaskDivider = require './lib/task_divider'
 CronJob = require('cron').CronJob
 
-task_division = new TaskDivider(
-  ['Keuken', 'Woonkamer', 'Toilet'],
-  [
-    { name: 'Pieter', email: process.env.EMAIL_PIETER },
-    { name: 'Bernard', email: process.env.EMAIL_BERNARD },
-    { name: 'Thomas', email: process.env.EMAIL_THOMAS }
-  ]
-)
+task_division = new TaskDivider()
 
 mailer = new Mailer 'Thomas Brus <thomasbrus92@gmail.com>'
 
