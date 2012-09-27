@@ -22,7 +22,7 @@ app.configure 'production', ->
   app.use express.errorHandler()
 
 task_divider = new TaskDivider()
-task_divisions = for i in [2..0]
+task_divisions = for i in [1..-1]
   now = new Date()
   now.setDate(now.getDate() + (5 - now.getDay()) - 7 * i)
   tasks = task_divider.run(now)
@@ -34,12 +34,6 @@ app.get '/', (req, res) -> res.render 'index',
 
 app.listen (process.env.PORT or 3000)
 console.log "Web server listening on port %d in %s mode", app.address().port, app.settings.env
-
-# $ heroku ps:scale worker=1
-# Scaling worker processes... failed
-#  !    Please verify your account in order to change resources
-#  !    For more information, see http://devcenter.heroku.com/categories/billing
-#  !    Verify now at http://heroku.com/verify
 
 require './worker'
 

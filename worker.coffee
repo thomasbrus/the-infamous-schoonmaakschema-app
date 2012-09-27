@@ -17,6 +17,8 @@ remindResidents = ->
 
         Klusje van deze week is: #{task}.
 
+        Overzicht: http://schema.thomasbrus.nl/
+
       """, (err, message) -> console.log(err || message)
     )
 

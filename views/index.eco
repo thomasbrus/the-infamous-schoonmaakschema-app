@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% for [date, first, second, third], i in @task_divisions: %>
-      <tr class="<%= 'muted' if i < @task_divisions.length - 1 %>">
+      <tr class="<%= 'muted' if i != 1 %>">
         <td><%= date %></td>
         <td><%= first %></td>
         <td><%= second %></td>
