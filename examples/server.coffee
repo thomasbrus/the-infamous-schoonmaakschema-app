@@ -1,6 +1,6 @@
 express         = require 'express'
 eco             = require 'eco'
-TaskDivider     = require './lib/task_divider'
+TaskDivider     = require '../lib/task_divider'
 
 app = module.exports = express.createServer();
 
@@ -34,6 +34,4 @@ app.get '/', (req, res) -> res.render 'index',
 
 app.listen (process.env.PORT or 3000)
 console.log "Web server listening on port %d in %s mode", app.address().port, app.settings.env
-
-require './worker'
 
