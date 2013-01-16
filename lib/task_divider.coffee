@@ -2,11 +2,11 @@ class TaskDivider
 
   TASKS = ['Keuken', 'Toilet', 'Woonkamer']
   RESIDENTS = [
-    { name: 'Thomas', email: process.env.EMAIL_THOMAS },
     { name: 'Bernard', email: process.env.EMAIL_BERNARD },
+    { name: 'Thomas', email: process.env.EMAIL_THOMAS },
     { name: 'Pieter', email: process.env.EMAIL_PIETER }
   ]
-
+  
   constructor: (@tasks = TASKS, @residents = RESIDENTS) ->
 
   run: (now = new Date()) ->
